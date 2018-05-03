@@ -4,28 +4,33 @@
 </CsOptions>
 <CsInstruments>
 
-sr = 44100
-kr = 4410
-ksmps = 10
+sr     = 44100
+kr     = 4410
+ksmps  = 10
 nchnls = 2
 
 instr 1 ; additive synthesis
+
 iamp = ampdb(p4)
-asig1 oscil iamp * .56, cpspch(p5), 1
-asig2 oscil iamp * .92, cpspch(p5 + 0.03), 1
+
+asig1 oscil iamp * .56,  cpspch(p5),        1
+asig2 oscil iamp * .92,  cpspch(p5 + 0.03), 1
 asig3 oscil iamp * 1.19, cpspch(p5 + 0.07), 1
-asig4 oscil iamp * 1.7, cpspch(p5 - 1.0), 1
-asig5 oscil iamp * 2.0, cpspch(p5 + 1.0), 1
+asig4 oscil iamp * 1.7,  cpspch(p5 - 1.0),  1
+asig5 oscil iamp * 2.0,  cpspch(p5 + 1.0),  1
+
 aadd = asig1 + asig2 + asig3 + asig4 + asig5
+
 kenv line 1, p3, 0
-aout = aadd * kenv
-out aout
+
+out aadd * kenv
+
 endin
 
 </CsInstruments>
 <CsScore>
 
-f1 0 8192 10 1
+f1 0 8192 10 1 ; sinusinė banga
 
 ; -- akordai -- 
 ;  st   dur db pitch
